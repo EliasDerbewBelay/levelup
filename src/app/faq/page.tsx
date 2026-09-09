@@ -23,7 +23,7 @@ export default function FAQPage() {
             </h1>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
               Answers regarding our hybrid training approach, Tulu Dimtu campus access,
-              course prerequisites, and certificate verification.
+              course prerequisites, and admissions.
             </p>
           </div>
         </div>

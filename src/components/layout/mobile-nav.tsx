@@ -103,16 +103,6 @@ export function MobileNav() {
             );
           })}
 
-          <div className="pt-2">
-            <Link
-              href="/certificate-verification"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center justify-between rounded-lg border border-border/80 px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              <span>Verify a Certificate</span>
-              <span className="font-mono text-xs text-brand">PORTAL →</span>
-            </Link>
-          </div>
         </div>
 
         {/* Bottom Drawer Actions */}
@@ -144,7 +134,7 @@ export function MobileNav() {
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-foreground py-2.5 text-center text-sm font-semibold text-background transition-opacity hover:opacity-90"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-amber-500 py-2.5 text-center text-sm font-bold text-slate-950 shadow-sm shadow-amber-500/25 transition-all hover:bg-amber-600 active:scale-95"
           >
             <span>Get Started / Inquire</span>
             <ArrowRight className="h-4 w-4" />

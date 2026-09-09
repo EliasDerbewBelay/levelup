@@ -69,13 +69,6 @@ export function Header() {
         {/* Right: Theme Switcher & Action CTAs */}
         <div className="flex items-center gap-2.5">
           <div className="hidden sm:flex items-center gap-2">
-            <Link
-              href="/certificate-verification"
-              className="hidden xl:inline-flex text-xs font-medium text-muted-foreground hover:text-foreground px-2 py-1 transition-colors"
-            >
-              Verify Certificate
-            </Link>
-
             <ThemeToggle />
 
             <Link
@@ -90,7 +83,7 @@ export function Header() {
 
           <Link
             href="/courses"
-            className="group relative inline-flex h-8 items-center justify-center gap-1 rounded-lg bg-foreground px-3.5 text-xs font-semibold text-background transition-transform active:scale-95 hover:opacity-90"
+            className="group relative inline-flex h-8 items-center justify-center gap-1 rounded-lg bg-amber-500 px-3.5 text-xs font-bold text-slate-950 shadow-sm shadow-amber-500/20 transition-all duration-150 hover:bg-amber-600 hover:shadow-amber-500/30 active:scale-95"
           >
             <span>Get Started</span>
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

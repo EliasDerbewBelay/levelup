@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { GalleryItem } from "@/types/gallery";
 import { Badge } from "@/components/ui/badge";
 import { X, MapPin, Maximize2 } from "lucide-react";
@@ -73,27 +74,40 @@ export function GalleryView({ items }: GalleryViewProps) {
             {/* Visual Canvas Card */}
             <div
               className={cn(
-                "relative flex h-52 w-full flex-col justify-between p-5 bg-gradient-to-br transition-transform duration-300 group-hover:scale-[1.02]",
+                "relative flex h-56 w-full flex-col justify-between overflow-hidden p-5 bg-gradient-to-br transition-transform duration-300 group-hover:scale-[1.02]",
                 item.accentColor || "from-secondary to-muted"
               )}
             >
+              {item.imagePath ? (
+                <>
+                  <Image
+                    src={item.imagePath}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30" />
+                </>
+              ) : null}
+
               {/* Top metadata */}
-              <div className="flex items-center justify-between">
+              <div className="relative z-10 flex items-center justify-between">
                 <Badge
                   variant="secondary"
-                  className="font-mono text-[10px] bg-background/80 backdrop-blur-sm border border-border"
+                  className="font-mono text-[10px] bg-background/90 backdrop-blur-sm border border-border"
                 >
                   {item.category}
                 </Badge>
-                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-background/80 text-foreground opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
+                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-background/90 text-foreground opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
                   <Maximize2 className="h-3.5 w-3.5" />
                 </span>
               </div>
 
-              {/* Technical Blueprint Graphics Placeholder */}
-              <div className="font-mono text-[11px] text-muted-foreground/80 opacity-70">
-                <div className="border-t border-border/40 pt-2 flex items-center justify-between">
-                  <span>FACILITY SPEC // 2026</span>
+              {/* Technical Blueprint Graphics / Real photo tag */}
+              <div className="relative z-10 font-mono text-[11px] text-white/90">
+                <div className="border-t border-white/20 pt-2 flex items-center justify-between">
+                  <span>{item.imagePath ? "CAMPUS PHOTO // 2026" : "FACILITY SPEC // 2026"}</span>
                   <span>ATIKA BLDG · 3F</span>
                 </div>
               </div>
@@ -149,21 +163,31 @@ export function GalleryView({ items }: GalleryViewProps) {
 
             <div
               className={cn(
-                "h-64 sm:h-80 w-full rounded-xl flex items-center justify-center bg-gradient-to-br p-8 text-center",
+                "relative h-64 sm:h-96 w-full rounded-xl overflow-hidden flex items-center justify-center bg-gradient-to-br p-8 text-center",
                 activeModalItem.accentColor || "from-secondary to-muted"
               )}
             >
-              <div className="max-w-md space-y-2">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground block">
-                  Level Up Campus Facility
-                </span>
-                <h4 className="text-xl font-bold text-foreground">
-                  {activeModalItem.title}
-                </h4>
-                <p className="text-xs text-muted-foreground">
-                  Ready for high-resolution campus photography under /public/images/gallery
-                </p>
-              </div>
+              {activeModalItem.imagePath ? (
+                <Image
+                  src={activeModalItem.imagePath}
+                  alt={activeModalItem.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  className="object-cover"
+                />
+              ) : (
+                <div className="max-w-md space-y-2">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground block">
+                    Level Up Campus Facility
+                  </span>
+                  <h4 className="text-xl font-bold text-foreground">
+                    {activeModalItem.title}
+                  </h4>
+                  <p className="text-xs text-muted-foreground">
+                    Ready for high-resolution campus photography under /public/images/gallery
+                  </p>
+                </div>
+              )}
             </div>
 
             <div>

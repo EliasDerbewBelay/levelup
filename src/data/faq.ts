@@ -23,13 +23,7 @@ export const FAQS: FAQItem[] = [
     id: "faq-certificates",
     category: "Certificates",
     question: "Do students receive an official certificate upon completion?",
-    answer: "Yes. Every student who completes the required course attendance, assignments, and capstone project defense is awarded an official Certificate of Completion from Level Up Training Institute. Each certificate features a unique verification code that employers can verify on our public Certificate Verification portal.",
-  },
-  {
-    id: "faq-verification",
-    category: "Certificates",
-    question: "How do employers verify Level Up certificates?",
-    answer: "Employers and institutions can visit leveluptraining.edu.et/certificate-verification and enter the unique Certificate ID printed on the credential. The portal confirms the graduate's name, track, completion date, and capstone honors status.",
+    answer: "Yes. Every student who completes the required course attendance, assignments, and capstone project defense is awarded an official Certificate of Completion from Level Up Training Institute detailing the curriculum mastered, project defense, and academic honors.",
   },
   {
     id: "faq-schedules",

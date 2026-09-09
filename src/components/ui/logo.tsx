@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -16,32 +17,27 @@ export function Logo({ className, showSubtitle = true }: LogoProps) {
       )}
       aria-label="Level Up Training Institute Homepage"
     >
-      {/* Geometric Level Up Icon */}
-      <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-foreground text-background transition-transform duration-200 group-hover:scale-105">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-4.5 w-4.5"
-        >
-          {/* Ascending stair/level glyph */}
-          <path d="M4 18h4v-4h4v-4h4V6h4" />
-          <path d="M16 6h4v4" />
-        </svg>
+      {/* Official Level Up Badge Logo */}
+      <div className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full transition-transform duration-200 group-hover:scale-105 sm:h-10 sm:w-10">
+        <Image
+          src="/logo/sticker.webp"
+          alt="Level Up Training Institute Logo"
+          width={40}
+          height={40}
+          className="h-full w-full object-contain"
+          priority
+        />
       </div>
 
       <div className="flex flex-col leading-none">
         <div className="flex items-center gap-1.5">
-          <span className="text-base font-bold tracking-tight text-foreground">
+          <span className="text-base font-bold tracking-tight text-foreground sm:text-lg">
             LEVEL UP
           </span>
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-500" />
         </div>
         {showSubtitle && (
-          <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
+          <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground sm:text-[10px]">
             Training Institute
           </span>
         )}

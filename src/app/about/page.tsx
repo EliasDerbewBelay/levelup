@@ -43,7 +43,7 @@ export default function AboutPage() {
       title: "Student Success",
       icon: CheckCircle2,
       description:
-        "Graduation is just the beginning. We emphasize verifiable public capstone portfolios, job-ready communication coaching, and digital certificate authentication.",
+        "Graduation is just the beginning. We emphasize practical capstone portfolios, job-ready communication coaching, and recognized completion certificates.",
     },
   ];
 
@@ -64,9 +64,9 @@ export default function AboutPage() {
       levelup: "Hybrid evening (5:30 PM - 8:30 PM) and intensive weekend cohort options",
     },
     {
-      topic: "Outcome & Verification",
+      topic: "Outcome & Certification",
       traditional: "Paper-only diploma with no proof of actual capability",
-      levelup: "Public portfolio, GitHub projects, and tamper-proof digital verification",
+      levelup: "Public portfolio, GitHub projects, and verified practical competence",
     },
   ];
 

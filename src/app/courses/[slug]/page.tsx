@@ -178,7 +178,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
               <div className="space-y-2.5 pt-2">
                 <Link
                   href={`/contact?course=${encodeURIComponent(course.title)}`}
-                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-foreground py-2.5 text-xs font-semibold text-background hover:opacity-90 transition-opacity"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-amber-500 py-2.5 text-xs font-bold text-slate-950 shadow-sm shadow-amber-500/20 hover:bg-amber-600 active:scale-95 transition-all"
                 >
                   <span>Ask About This Course</span>
                   <ArrowRight className="h-3.5 w-3.5" />

@@ -1,13 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  ShieldCheck,
-  Search,
-  CheckCircle2,
-  AlertCircle,
-  FileCheck,
-} from "lucide-react";
+import { ShieldCheck, Search, CheckCircle2, AlertCircle, FileCheck } from "lucide-react";
 
 interface MockCertificate {
   id: string;
@@ -21,8 +15,7 @@ interface MockCertificate {
   status: "Valid" | "Revoked";
 }
 
-// Sample mock certificates for testing the UI
-const MOCK_CERTIFICATES: Record<string, MockCertificate> = {
+const SAMPLE_CERTIFICATES: Record<string, MockCertificate> = {
   "LU-2026-PY-0142": {
     id: "LU-2026-PY-0142",
     studentName: "Yared Bekele",
@@ -64,21 +57,16 @@ export function CertificateVerifier() {
   const [result, setResult] = React.useState<MockCertificate | null>(null);
   const [hasSearched, setHasSearched] = React.useState(false);
 
-  /**
-   * Future Backend Integration Boundary:
-   * Replace this mock lookup with `await fetch('/api/verify-certificate?id=' + certId)`
-   */
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
     if (!certId.trim()) return;
 
     setLoading(true);
-    setHasSearched(false);
-
+    // UI-only mock delay. Future: await fetch(`/api/verify?id=${certId}`)
     setTimeout(() => {
       const normalized = certId.trim().toUpperCase();
-      const found = MOCK_CERTIFICATES[normalized] || null;
-      setResult(found);
+      const match = SAMPLE_CERTIFICATES[normalized] || null;
+      setResult(match);
       setHasSearched(true);
       setLoading(false);
     }, 400);
@@ -86,47 +74,50 @@ export function CertificateVerifier() {
 
   const handleTestId = (id: string) => {
     setCertId(id);
-    const found = MOCK_CERTIFICATES[id] || null;
-    setResult(found);
-    setHasSearched(true);
+    setLoading(true);
+    setTimeout(() => {
+      setResult(SAMPLE_CERTIFICATES[id] || null);
+      setHasSearched(true);
+      setLoading(false);
+    }, 300);
   };
 
   return (
     <div className="space-y-8">
-      {/* Search Input Box */}
-      <div className="rounded-2xl border border-border/80 bg-card p-6 sm:p-8 shadow-sm">
+      {/* Verification Query Box */}
+      <div className="rounded-3xl border border-blue-200/80 bg-card p-6 sm:p-10 shadow-xl dark:border-blue-900/40">
         <form onSubmit={handleVerify} className="space-y-4">
           <label
             htmlFor="certificate-id-input"
-            className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground font-mono"
+            className="block text-xs font-bold uppercase tracking-wider text-muted-foreground font-mono"
           >
             Enter Certificate ID
           </label>
 
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 id="certificate-id-input"
                 type="text"
                 placeholder="e.g., LU-2026-PY-0142"
                 value={certId}
                 onChange={(e) => setCertId(e.target.value)}
-                className="w-full rounded-xl border border-border bg-background pl-10 pr-4 py-2.5 font-mono text-sm text-foreground uppercase placeholder:normal-case placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand"
+                className="w-full rounded-xl border border-border bg-background pl-11 pr-4 py-3 font-mono text-sm text-foreground uppercase placeholder:normal-case placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading || !certId.trim()}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-foreground px-6 text-xs font-semibold text-background hover:opacity-90 disabled:opacity-50 transition-opacity whitespace-nowrap"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-amber-500 px-7 text-xs font-bold text-slate-950 shadow-md shadow-amber-500/20 hover:bg-amber-600 disabled:opacity-50 active:scale-95 transition-all whitespace-nowrap"
             >
               {loading ? (
                 <span>Validating...</span>
               ) : (
                 <>
                   <ShieldCheck className="h-4 w-4" />
-                  <span>Verify Credential</span>
+                  <span>Verify Certificate</span>
                 </>
               )}
             </button>
@@ -135,12 +126,12 @@ export function CertificateVerifier() {
           {/* Quick Click Samples */}
           <div className="flex flex-wrap items-center gap-2 pt-2 text-xs text-muted-foreground">
             <span className="font-mono text-[11px]">Sample Valid IDs:</span>
-            {Object.keys(MOCK_CERTIFICATES).map((sampleId) => (
+            {Object.keys(SAMPLE_CERTIFICATES).map((sampleId) => (
               <button
                 key={sampleId}
                 type="button"
                 onClick={() => handleTestId(sampleId)}
-                className="rounded-md border border-border/70 bg-secondary/60 px-2 py-0.5 font-mono text-[11px] text-foreground hover:bg-muted hover:border-foreground/30 transition-colors"
+                className="rounded-lg border border-border/80 bg-secondary/60 px-2.5 py-1 font-mono text-[11px] text-foreground hover:bg-muted hover:border-foreground/30 transition-colors"
               >
                 {sampleId}
               </button>
@@ -153,8 +144,8 @@ export function CertificateVerifier() {
       {hasSearched && (
         <div>
           {result ? (
-            <div className="relative overflow-hidden rounded-2xl border border-emerald-500/40 bg-card p-6 sm:p-10 shadow-lg">
-              {/* Watermark seal */}
+            <div className="relative overflow-hidden rounded-3xl border border-emerald-500/40 bg-card p-6 sm:p-10 shadow-xl">
+              {/* Verified Badge */}
               <div className="absolute right-4 top-4 font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4" />
                 <span>OFFICIALLY VERIFIED</span>
@@ -224,27 +215,25 @@ export function CertificateVerifier() {
                 {/* Cryptographic Hash & Security Seal */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
                   <div className="space-y-1 font-mono text-[10px] text-muted-foreground max-w-lg">
-                    <span>Cryptographic Verification Hash:</span>
-                    <div className="break-all rounded bg-secondary/70 p-2 text-foreground font-mono">
+                    <span>Credential Hash:</span>
+                    <div className="break-all rounded-lg bg-secondary/70 p-2.5 text-foreground font-mono">
                       {result.credentialHash}
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => window.print()}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted"
-                    >
-                      <FileCheck className="h-3.5 w-3.5 text-brand" />
-                      <span>Print Verification</span>
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted"
+                  >
+                    <FileCheck className="h-4 w-4 text-brand" />
+                    <span>Print Verification</span>
+                  </button>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="rounded-2xl border border-destructive/30 bg-destructive/5 p-8 text-center sm:p-12 space-y-3">
+            <div className="rounded-3xl border border-destructive/30 bg-destructive/5 p-8 text-center sm:p-12 space-y-3">
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10 text-destructive">
                 <AlertCircle className="h-5 w-5" />
               </div>
@@ -254,21 +243,8 @@ export function CertificateVerifier() {
               <p className="text-xs text-muted-foreground max-w-md mx-auto leading-relaxed">
                 We could not locate any active credentials matching ID:{" "}
                 <strong className="font-mono text-foreground">{certId}</strong>.
-                Please ensure the Certificate ID is typed exactly as printed on the
-                official document, or contact our registrar office.
+                Please verify the ID on your printed certificate or contact our registrar.
               </p>
-              <div className="pt-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setCertId("");
-                    setHasSearched(false);
-                  }}
-                  className="rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted"
-                >
-                  Clear Search
-                </button>
-              </div>
             </div>
           )}
         </div>

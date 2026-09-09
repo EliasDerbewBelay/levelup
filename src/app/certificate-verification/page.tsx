@@ -3,27 +3,26 @@ import { ShieldCheck, Lock, FileSearch } from "lucide-react";
 import { CertificateVerifier } from "@/components/verification/certificate-verifier";
 
 export const metadata: Metadata = {
-  title: "Certificate Verification Portal",
+  title: "Verify Your Certificate | Level Up Training Institute",
   description:
-    "Verify official Level Up Training Institute certificates and student credentials online.",
+    "Official credential verification portal for Level Up Training Institute certificates.",
 };
 
 export default function CertificateVerificationPage() {
   return (
     <div className="flex flex-col">
       {/* Header */}
-      <section className="border-b border-border/60 bg-secondary/25 py-14 md:py-20">
+      <section className="border-b border-border/80 bg-soft-background/60 py-14 md:py-20 transition-colors">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-brand">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-brand">
               CREDENTIAL INTEGRITY
             </span>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-5xl text-foreground">
-              Official Certificate Verification
+              Verify Your Certificate
             </h1>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Employers, hiring managers, and partner institutions can authenticate
-              certificates of completion issued by Level Up Training Institute.
+              Employers, academic partners, and sponsors can validate official Certificates of Completion issued by Level Up Training Institute.
             </p>
           </div>
         </div>
@@ -35,34 +34,34 @@ export default function CertificateVerificationPage() {
           <CertificateVerifier />
 
           {/* Verification Security Notice */}
-          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-3 text-xs text-muted-foreground border-t border-border/60 pt-8">
+          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-3 text-xs text-muted-foreground border-t border-border/70 pt-8">
             <div className="space-y-1.5">
-              <div className="flex items-center gap-2 text-foreground font-semibold">
+              <div className="flex items-center gap-2 text-foreground font-bold">
                 <ShieldCheck className="h-4 w-4 text-brand" />
-                <span>Cryptographic Proof</span>
+                <span>Tamper-Proof Registry</span>
               </div>
               <p className="leading-relaxed">
-                Every credential hash is matched against our internal academic ledger to prevent forgery.
+                Matched against official academic ledger to authenticate completion credentials.
               </p>
             </div>
 
             <div className="space-y-1.5">
-              <div className="flex items-center gap-2 text-foreground font-semibold">
+              <div className="flex items-center gap-2 text-foreground font-bold">
                 <FileSearch className="h-4 w-4 text-brand" />
                 <span>Syllabus Validation</span>
               </div>
               <p className="leading-relaxed">
-                Confirm specific modules, lab hours completed, and capstone project defenses.
+                Confirms required lab hours, hands-on modules, and project defense grades.
               </p>
             </div>
 
             <div className="space-y-1.5">
-              <div className="flex items-center gap-2 text-foreground font-semibold">
+              <div className="flex items-center gap-2 text-foreground font-bold">
                 <Lock className="h-4 w-4 text-brand" />
-                <span>Registrar Support</span>
+                <span>Enterprise Trust</span>
               </div>
               <p className="leading-relaxed">
-                For official transcript requests or embossed copies, contact info@leveluptraining.edu.et.
+                Accepted by regional and international tech employers and agencies.
               </p>
             </div>
           </div>

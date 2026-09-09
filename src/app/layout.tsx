@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { TopUtilityBar } from "@/components/layout/top-utility-bar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { INSTITUTE_INFO } from "@/data/institute";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -36,6 +38,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Level Up Training Institute" }],
   creator: "Level Up Training Institute",
+  icons: {
+    icon: "/logo/sticker.webp",
+    shortcut: "/logo/sticker.webp",
+    apple: "/logo/sticker.webp",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -44,12 +51,21 @@ export const metadata: Metadata = {
     description:
       "Bridging the gap between theory and industry execution. Explore our hands-on cohorts in Technology, Languages, Creative Arts, and Accounting.",
     siteName: INSTITUTE_INFO.name,
+    images: [
+      {
+        url: "/logo/sticker.webp",
+        width: 512,
+        height: 512,
+        alt: "Level Up Training Institute Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: INSTITUTE_INFO.name,
     description:
       "Practical tech, languages, creative media, and accounting training at Tulu Dimtu Square, Addis Ababa.",
+    images: ["/logo/sticker.webp"],
   },
   robots: {
     index: true,
@@ -66,7 +82,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans bg-background text-foreground selection:bg-brand/20 selection:text-brand">
         <ThemeProvider
@@ -76,6 +92,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex min-h-screen flex-col">
+            <TopUtilityBar />
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />

@@ -175,7 +175,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-foreground px-4 text-xs font-semibold text-background hover:opacity-90 transition-opacity"
+        className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-amber-500 px-4 text-xs font-bold text-slate-950 shadow-md shadow-amber-500/20 hover:bg-amber-600 active:scale-95 transition-all"
       >
         <Send className="h-3.5 w-3.5" />
         <span>Submit Admissions Inquiry</span>

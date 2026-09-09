@@ -64,7 +64,7 @@ export default function StudentPolicyPage() {
               4. Attendance &amp; Certificate Eligibility
             </h2>
             <p>
-              To qualify for the official Certificate of Completion and digital verification listing,
+              To qualify for the official Certificate of Completion,
               students must achieve at least <strong>80% lab session attendance</strong> and successfully
               pass their track&apos;s capstone project defense.
             </p>

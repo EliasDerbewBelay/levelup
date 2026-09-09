@@ -6,13 +6,14 @@ export interface NavItem {
 }
 
 export const MAIN_NAV_ITEMS: NavItem[] = [
+  { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
-  { label: "About", href: "/about" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Instructors", href: "/instructors" },
+  { label: "About", href: "/about" },
   { label: "Events", href: "/events" },
   { label: "Blog", href: "/blog" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const FOOTER_SECTIONS = [
@@ -41,8 +42,8 @@ export const FOOTER_SECTIONS = [
     links: [
       { label: "Upcoming Events", href: "/events" },
       { label: "Institute Blog", href: "/blog" },
-      { label: "Certificate Verification", href: "/certificate-verification" },
       { label: "Frequently Asked Questions", href: "/faq" },
+      { label: "Certificate Verification", href: "/certificate-verification" },
       { label: "Admissions Consultation", href: "/contact" },
     ],
   },
